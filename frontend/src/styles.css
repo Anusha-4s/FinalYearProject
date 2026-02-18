@@ -1,0 +1,349 @@
+/* =========================
+   GLOBAL
+========================= */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url("/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #6b3e2e;
+  color: white;
+  padding: 15px 20px;
+}
+
+.navbar img {
+  height: 70px;
+  padding: 6px;
+  background: white;
+  border-radius: 12px;
+  border: 2px solid #9caf88;
+}
+
+.navbar h1 {
+  font-size: 26px;
+}
+
+/* =========================
+   SEARCH + FILTERS
+========================= */
+.container {
+  padding: 20px;
+}
+
+.search {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+.filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.filters select {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: #6b3e2e;
+  color: #fdfdfd;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* =========================
+   PRODUCT GRID
+========================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+/* =========================
+   PRODUCT CARD
+========================= */
+.product-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+}
+
+/* IMAGE FRAME */
+.product-image {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #e9e4dc;
+}
+
+/* IMAGE FILL */
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.35s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.06);
+}
+
+/* WISHLIST HEART */
+.wishlist-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255,255,255,0.92);
+  color: #6b3e2e;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  z-index: 5;
+}
+
+.wishlist-icon:hover {
+  background: #6b3e2e;
+  color: white;
+}
+
+/* INFO */
+.product-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.product-info h3 {
+  margin: 6px 0;
+  font-size: 16px;
+}
+
+.price {
+  font-weight: bold;
+  margin: 8px 0;
+  color: #2f3e2f;
+}
+
+/* BUTTONS */
+.card-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cart-btn {
+  flex: 1;
+  background: #4f6f52;
+  color: white;
+  border: none;
+  padding: 9px 0;
+  font-weight: 700;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.cart-btn:hover {
+  background: #3d5942;
+}
+
+.buy-btn {
+  flex: 1;
+  background: #6b3e2e;
+  color: white;
+  border: none;
+  padding: 9px 0;
+  font-weight: 700;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.buy-btn:hover {
+  background: #543022;
+}
+
+/* =========================
+   PRODUCT DETAILS PAGE
+========================= */
+.product-page {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  gap: 40px;
+  padding: 40px 70px;
+  align-items: start;
+  background: #f7f5f2;
+}
+
+.product-left img {
+  width: 100%;
+  height: 520px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.product-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-title {
+  font-size: 34px;
+  font-weight: 600;
+  color: #6b3e2e;
+}
+
+.product-price {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  border: 1px solid #ccc;
+}
+
+.quantity button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.quantity span {
+  width: 40px;
+  text-align: center;
+}
+
+.description {
+  margin-top: 15px;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* toast*/
+/* TOAST MESSAGE */
+.toast {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: #bf3e3e;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.35s ease;
+  z-index: 9999;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* HEADER BUTTONS */
+/* HEADER BUTTONS */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.top-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.top-buttons button {
+  background: transparent;
+  border: 1.5px solid #222;
+  color: #222;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.top-buttons button:hover {
+  background: #222;
+  color: white;
+}
+
+/* REMOVE BUTTON */
+.page-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.remove-btn {
+  flex: 1;
+  background: transparent;
+  border: 1.5px solid #b00020;
+  color: #b00020;
+  padding: 8px 0;
+  border-radius: 7px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background: #b00020;
+  color: white;
+}
+
+/* change dropdown selected highlight */
+.filters select option:checked {
+  background: #9caf88;   /* sage green */
+  color: #1f2d1f;
+}
+
+/* also when hovering inside dropdown */
+.filters select option:hover {
+  background: #9caf88;
+  color: #1f2d1f;
+}
