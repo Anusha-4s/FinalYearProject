@@ -1,3 +1,4 @@
+
 export default function SearchBar({ search, setSearch }) {
 return (
 <input

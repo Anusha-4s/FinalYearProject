@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../../components/navbar";
 
 export default function Wishlist() {
   const [items, setItems] = useState([]);
@@ -16,40 +17,48 @@ export default function Wishlist() {
   };
 
   return (
-    <div className="container">
-      <h1>wishlist</h1>
+    <>
+      <Navbar />
 
-      <div className="grid">
-        {items.map((item, i) => (
-          <div className="product-card" key={i}>
-            <div className="product-image">
-              <img src={`http://localhost:5001${item.image}`} alt={item.name} />
-            </div>
+      <div className="wishlist-page">
+        <h1 className="page-title">My Wishlist</h1>
 
-            <div className="product-info">
-              <h3>{item.name}</h3>
-              <p className="price">₹{item.price}</p>
+        {items.length === 0 ? (
+          <p className="empty-msg">Your wishlist is empty.</p>
+        ) : (
+          <div className="wishlist-grid">
+            {items.map((item, i) => (
+              <div className="wishlist-card" key={i}>
+                <img
+                  src={`http://localhost:5001${item.image}`}
+                  alt={item.name}
+                />
 
-              <div className="page-actions">
-                <button
-                  className="buy-btn"
-                  onClick={() => navigate(`/product/${encodeURIComponent(item.name)}`)}
-                >
-                  Buy Now
-                </button>
+                <h3>{item.name}</h3>
+                <p>₹{item.price}</p>
 
-                <button
-                  className="remove-btn"
-                  onClick={() => removeItem(item.name)}
-                >
-                  Remove
-                </button>
+                <div className="wishlist-actions">
+                  <button
+                    className="buy-btn"
+                    onClick={() =>
+                      navigate(`/product/${encodeURIComponent(item.name)}`)
+                    }
+                  >
+                    Buy Now
+                  </button>
+
+                  <button
+                    className="remove-btn"
+                    onClick={() => removeItem(item.name)}
+                  >
+                    Remove
+                  </button>
+                </div>
               </div>
-
-            </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
-    </div>
+    </>
   );
 }

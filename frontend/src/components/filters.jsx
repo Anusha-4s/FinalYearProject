@@ -1,3 +1,4 @@
+
 export default function Filters({ category, setCategory, price, setPrice }) {
   return (
     <div className="filters">
@@ -24,4 +25,3 @@ export default function Filters({ category, setCategory, price, setPrice }) {
     </div>
   );
 }
-

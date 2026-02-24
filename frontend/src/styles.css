@@ -3,27 +3,37 @@
 ========================= */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins',sans-serif;
   background-image: url("/bg.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
-
+h1, h2, h3 {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
 /* =========================
    NAVBAR
 ========================= */
 .navbar {
   display: flex;
   align-items: center;
-  gap: 15px;
+  justify-content: space-between;
   background: #6b3e2e;
   color: white;
-  padding: 15px 20px;
+  padding: 15px 40px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
 }
 
 .navbar img {
-  height: 70px;
+  height: 60px;
   padding: 6px;
   background: white;
   border-radius: 12px;
@@ -31,48 +41,143 @@ body {
 }
 
 .navbar h1 {
-  font-size: 26px;
+  font-size: 24px;
 }
 
-/* =========================
-   SEARCH + FILTERS
-========================= */
-.container {
-  padding: 20px;
+.nav-links {
+  display: flex;
+  gap: 25px;
 }
 
-.search {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
+.nav-links button {
+  background: none;
   border: none;
-  margin-bottom: 15px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
   font-size: 15px;
 }
 
-.filters {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 25px;
+.nav-links button:hover {
+  text-decoration: underline;
 }
 
-.filters select {
-  padding: 10px 14px;
-  border-radius: 10px;
+.nav-icons {
+  display: flex;
+  gap: 18px;
+}
+
+.nav-icons button {
+  background: none;
   border: none;
-  background: #6b3e2e;
-  color: #fdfdfd;
-  font-weight: 500;
+  font-size: 18px;
+  color: white;
   cursor: pointer;
 }
 
 /* =========================
-   PRODUCT GRID
+   HERO SECTION
 ========================= */
-.grid {
+.hero {
+  height: 420px;
+  background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+              url("/hero.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  padding-left: 80px;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.hero-content button {
+  background: #4f6f52;
+  border: none;
+  padding: 12px 26px;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.hero-content button:hover {
+  background: #3d5942;
+}
+
+/* =========================
+   FILTER BAR
+========================= */
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: #f4efe9;
+  border-bottom: 1px solid #ddd;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 20px;
+}
+
+.category-tabs button {
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  padding-bottom: 6px;
+  font-size: 18px;
+}
+
+.category-tabs button:hover {
+  color: #4f6f52;
+}
+
+.active-tab {
+  border-bottom: 3px solid #4f6f52;
+  color: #4f6f52;
+}
+.right-controls {
+  display: flex;
+  gap: 15px;
+}
+.right-controls select,
+.right-controls input {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 17px;
+  box-shadow: 0 0 0 3px rgba(79, 111, 82, 0.15);
+}
+
+/* =========================
+   PRODUCTS GRID
+========================= */
+.products-container {
+  padding: 40px 60px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.no-products {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 0;
+}
+
+.no-products h2 {
+  margin-bottom: 10px;
 }
 
 /* =========================
@@ -96,21 +201,26 @@ body {
 .product-image {
   position: relative;
   width: 100%;
-  height: 230px;
+  height: 240px;
   overflow: hidden;
-  border-radius: 16px;
-  background: #e9e4dc;
+  background: #f7f5f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:4px
 }
 
 /* IMAGE FILL */
 .product-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   transition: transform 0.35s ease;
 }
-
+.product-image{
+  border-bottom: 2px solid #000000;
+}
 .product-card:hover .product-image img {
   transform: scale(1.06);
 }
@@ -141,26 +251,25 @@ body {
 
 /* INFO */
 .product-info {
-  padding: 15px;
+  padding: 12px 15px 10px;
   text-align: center;
+  border-top: 2px solid #e8e8e8;
 }
-
 .product-info h3 {
-  margin: 6px 0;
-  font-size: 16px;
+  margin: 4px 0 2px;   /* tighter bottom */
+  font-size: 15px;
+  font-weight: 500;
 }
-
 .price {
-  font-weight: bold;
-  margin: 8px 0;
+  margin: 0 0 6px;     /* remove top margin */
+  font-weight: 600;
   color: #2f3e2f;
 }
-
 /* BUTTONS */
 .card-buttons {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 8px;
+  margin-top: 6px;
 }
 
 .cart-btn {
@@ -215,28 +324,61 @@ body {
   box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
+.product-left {
+  position: relative;
+}
+
+.product-left .wishlist-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.95);
+  color: #6b3e2e;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.product-left .wishlist-icon:hover {
+  background: #6b3e2e;
+  color: white;
+}
 .product-right {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .product-title {
-  font-size: 34px;
+  font-size: 30px;
   font-weight: 600;
   color: #6b3e2e;
+  margin: 0;
 }
 
 .product-price {
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 2px 0 6px; 
 }
-
+.product-meta{
+  font-size: 14px;
+  margin: 2px 0;
+  color: #444;
+}
 .quantity {
   display: flex;
   align-items: center;
   width: fit-content;
   border: 1px solid #ccc;
+  margin-top:8px
 }
 
 .quantity button {
@@ -248,19 +390,27 @@ body {
   cursor: pointer;
 }
 
+.quantity button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .quantity span {
   width: 40px;
   text-align: center;
 }
 
 .description {
-  margin-top: 15px;
-  line-height: 1.7;
+  margin-top: 12px;
+  line-height: 1.6;
   color: #444;
 }
+.product-card{
+  padding-bottom:6px;
+}
 
-/* toast*/
-/* TOAST MESSAGE */
+/* =========================
+   TOAST
+========================= */
 .toast {
   position: fixed;
   bottom: 25px;
@@ -282,38 +432,9 @@ body {
   transform: translateX(-50%) translateY(0);
 }
 
-/* HEADER BUTTONS */
-/* HEADER BUTTONS */
-.page-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.top-buttons {
-  display: flex;
-  gap: 14px;
-}
-
-.top-buttons button {
-  background: transparent;
-  border: 1.5px solid #222;
-  color: #222;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.25s;
-}
-
-.top-buttons button:hover {
-  background: #222;
-  color: white;
-}
-
-/* REMOVE BUTTON */
+/* =========================
+   REMOVE BUTTON
+========================= */
 .page-actions {
   display: flex;
   gap: 10px;
@@ -335,15 +456,418 @@ body {
   background: #b00020;
   color: white;
 }
+/* =========================
+   WISHLIST PAGE
+========================= */
 
-/* change dropdown selected highlight */
-.filters select option:checked {
-  background: #9caf88;   /* sage green */
-  color: #1f2d1f;
+.wishlist-page {
+  padding: 40px 60px;
+  background: #f7f5f2;
+  min-height: 80vh;
 }
 
-/* also when hovering inside dropdown */
-.filters select option:hover {
-  background: #9caf88;
-  color: #1f2d1f;
+.page-title {
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #6b3e2e;
+}
+
+.empty-msg {
+  font-size: 16px;
+  color: #555;
+}
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.wishlist-card {
+  background: white;
+  border-radius: 16px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: 0.3s;
+}
+
+.wishlist-card:hover {
+  transform: translateY(-6px);
+}
+
+.wishlist-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.wishlist-card h3 {
+  margin: 8px 0 4px;
+  font-size: 16px;
+}
+
+.wishlist-card p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.wishlist-actions {
+  display: flex;
+  gap: 10px;
+}
+/* =========================
+   PRODUCTS TITLE
+========================= */
+.products-header {
+  padding: 15px 60px 5px;   /* reduced top + bottom */
+  background: #f7f5f2;
+}
+
+.products-header h1 {
+  font-size: 28px;
+  margin: 0;               /* removes default h1 margin */
+  color: #6b3e2e;
+  font-weight: 600;
+}
+
+/* =========================
+   FILTER BUTTON
+========================= */
+.filter-btn {
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background:  #4f6f52;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background: #f4efe9;
+}
+
+/* =========================
+   FILTER PANEL
+========================= */
+.filter-panel {
+  margin: 10px 60px 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.filter-panel input[type="number"] {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cart-icon {
+  position: relative;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: white;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: #4f6f52;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+/* =========================
+   ACCORDION (Dropdown)
+========================= */
+
+.accordion {
+  margin-top: 12px;
+  border-top: 1px solid #ddd;
+}
+
+.accordion-header {
+  padding: 12px 0;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  color: #6b3e2e;
+  transition: 0.3s;
+}
+
+.accordion-header:hover {
+  color: #4f6f52;
+}
+
+.accordion-body {
+  padding: 10px 0 15px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Sticky Image */
+.product-left {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+}
+
+/* Accordion */
+.accordion {
+  margin-top: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.accordion-header {
+  padding: 12px 0;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  color: #6b3e2e;
+}
+
+.accordion-body {
+  padding: 10px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Pills */
+.pill-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.pill:hover {
+  border-color: #4f6f52;
+}
+
+.active-pill {
+  background: #4f6f52;
+  color: white;
+  border-color: #4f6f52;
+}
+/* =========================
+   PRODUCT DETAILS HEART
+========================= */
+
+/* Make image container relative */
+.details-image-wrapper {
+  position: relative;
+}
+
+/* Floating heart button */
+.details-heart {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  font-size: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+/* Hover effect */
+.details-heart:hover {
+  transform: scale(1.1);
+}
+
+/* Active (when wishlisted) */
+.active-heart {
+  background: #6b3e2e;
+  color: white;
+}
+/* =========================
+   PRODUCT DETAILS HEART
+========================= */
+
+.details-image-wrapper {
+  position: relative;
+}
+
+.details-heart {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255,255,255,0.95);
+  border: none;
+  font-size: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+/* Hover */
+.details-heart:hover {
+  transform: scale(1.1);
+}
+
+/* Active (RED + POP) */
+.active-heart {
+  background: #e63946;   /* rich red */
+  color: white;
+  animation: heartPop 0.3s ease;
+}
+
+/* Pop animation */
+@keyframes heartPop {
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+/* =========================
+   PRODUCT DETAILS SPACING FIX
+========================= */
+
+/* Reduce space below description */
+.description {
+  margin-top: 10px;
+  margin-bottom: 8px;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* Reduce space above accordion */
+.accordion {
+  margin-top: 6px;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 8px;
+}
+
+/* =========================
+   MORE CUSTOMIZATION BUTTON
+========================= */
+
+.more-custom-btn {
+  margin-top: 18px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #6b3e2e;
+  background: transparent;
+  color: #6b3e2e;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.more-custom-btn:hover {
+  background: #6b3e2e;
+  color: white;
+}
+/* =========================
+   CATEGORY TABS 
+========================= */
+
+.category-tabs {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Default tab */
+.category-tabs button {
+  padding: 8px 18px;
+  border-radius: 25px;
+  border: 1.5px solid #d8e3dc;
+  background: #f5f8f6;
+  color: #2f3e2f;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.category-tabs button:hover {
+  background: #492e09;
+  color: white;
+  border-color: #4f6f52;
+}
+
+/* Active tab */
+.active-tab {
+  background: #4f6f52 !important;
+  color: white !important;
+  border-color: #4f6f52 !important;
+}
+/* =========================
+   PRODUCT IMAGE PANEL
+========================= */
+
+.image-panel {
+  background: #f7f5f2;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-panel img {
+  max-width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+}
+
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+.breadcrumb {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 25px;
+}
+
+.breadcrumb span {
+  color: #4f6f52;
+  font-weight: 600;
 }

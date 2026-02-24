@@ -1,3 +1,4 @@
+
 const products = [
 // WOODEN
 { id: 1, name: "Wooden Trophy", category: "Wooden", price: 850, image: "/src/assets/images/wooden/wooden-trophy.jpg" },
