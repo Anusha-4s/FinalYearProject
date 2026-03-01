@@ -46,6 +46,8 @@ export default function ProductDetails() {
   /* ---------------- CART ---------------- */
 
   const addToCart = () => {
+    if (product.stock === 0) return;
+
     if (qty > product.stock) {
       alert("Cannot add more than available stock 🚫");
       return;
@@ -80,7 +82,6 @@ export default function ProductDetails() {
       {/* LEFT SIDE */}
       <div className="product-left">
 
-        {/* 🔹 BREADCRUMB ABOVE IMAGE */}
         <div className="details-breadcrumb">
           Home &nbsp; &gt; &nbsp;
           {product.category} &nbsp; &gt; &nbsp;
@@ -110,9 +111,27 @@ export default function ProductDetails() {
         <h1 className="product-title">{product.name}</h1>
         <h2 className="product-price">₹{product.price}</h2>
 
-        <p className="product-meta"><b>Category:</b> {product.category}</p>
-        <p className="product-meta"><b>Stock:</b> {product.stock}</p>
+        <p className="product-meta">
+          <b>Category:</b> {product.category}
+        </p>
 
+        <p className="stock-indicator">
+  {product.stock > 5 && (
+    <span className="stock-green">🟢 In Stock</span>
+  )}
+
+  {product.stock <= 5 && product.stock > 0 && (
+    <span className="stock-orange">
+      🔥 Hurry! Only {product.stock} left
+    </span>
+  )}
+
+  {product.stock === 0 && (
+    <span className="stock-red">
+      ❌ Out of Stock
+    </span>
+  )}
+</p>
         {/* QUANTITY */}
         <div className="quantity">
           <button onClick={() => setQty(q => Math.max(1, q - 1))}>
@@ -129,18 +148,31 @@ export default function ProductDetails() {
               }
               setQty(q => q + 1);
             }}
-            disabled={qty >= product.stock}
+            disabled={qty >= product.stock || product.stock === 0}
           >
             +
           </button>
         </div>
 
-        <button className="cart-btn" onClick={addToCart}>
-          Add to Cart
+        {/* ADD TO CART */}
+        <button
+          className="cart-btn"
+          onClick={addToCart}
+          disabled={product.stock === 0}
+        >
+          {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
         </button>
 
-        <button className="buy-btn">
-          Buy Now
+        {/* BUY NOW */}
+        <button
+          className="buy-btn"
+          disabled={product.stock === 0}
+          style={{
+            opacity: product.stock === 0 ? 0.6 : 1,
+            cursor: product.stock === 0 ? "not-allowed" : "pointer"
+          }}
+        >
+          {product.stock === 0 ? "Unavailable" : "Buy Now"}
         </button>
 
         {/* DESCRIPTION */}

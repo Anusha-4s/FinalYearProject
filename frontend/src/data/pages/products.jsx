@@ -1,14 +1,29 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import products from "../data/products";
-import filters from "../components/filters";
-import productCard from "../components/productcard";
-import searchbar from "../components/searchbar";
+import Filters from "../components/filters";
+import ProductCard from "../components/productcard";
+import Searchbar from "../components/searchbar";
 
 function Products() {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [search, setSearch] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("darkMode");
+    if (saved === "true") {
+      document.body.classList.add("dark");
+      setDarkMode(true);
+    }
+  }, []);
+
+  const toggleDark = () => {
+    document.body.classList.toggle("dark");
+    const isDark = document.body.classList.contains("dark");
+    localStorage.setItem("darkMode", isDark);
+    setDarkMode(isDark);
+  };
 
   const filteredProducts = products.filter((p) => {
     const categoryMatch = category === "" || p.category === category;
@@ -25,16 +40,29 @@ function Products() {
 
   return (
     <div className="container fade-in">
-      <searchbar search={search} setSearch={setSearch} />
-      <filters setCategory={setCategory} setPrice={setPrice} />
+
+      {/* Search + Dark Toggle Row */}
+      <div className="search-dark-row">
+        <Searchbar search={search} setSearch={setSearch} />
+
+        <button
+          className="dark-toggle-toolbar"
+          onClick={toggleDark}
+        >
+          {darkMode ? "☀️" : "🌙"}
+        </button>
+      </div>
+
+      <Filters setCategory={setCategory} setPrice={setPrice} />
 
       <div className="grid">
         {filteredProducts.map((p) => (
-          <productcard key={p.id} product={p} />
+          <ProductCard key={p.id} product={p} />
         ))}
       </div>
+
     </div>
   );
 }
 
-export default products;
+export default Products;
