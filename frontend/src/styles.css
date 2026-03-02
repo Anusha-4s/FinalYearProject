@@ -4,7 +4,7 @@
 body {
   margin: 0;
   font-family: 'Poppins',sans-serif;
-  background-image: url("/bg.jpg");
+  background: #fae4d7;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -1102,4 +1102,68 @@ body.dark select {
   background: #222;
   color: #ffffff;
   border: 1px solid #f0eeee;
+}
+/* ===== DARK MODE NAVBAR TITLE FIX ===== */
+
+body.dark .navbar {
+  background: #353131 !important;  /* pure black navbar */
+}
+
+body.dark .navbar h1 {
+  color: #ffffff !important;   /* make title white */
+}
+
+/* If logo text also has class */
+body.dark .nav-left h1 {
+  color: #ffffff !important;
+}
+/* PRODUCT NAME WHITE IN DARK MODE */
+body.dark .product-card h3,
+body.dark .product-card .product-name {
+  color: #ffffff !important;
+}
+
+/* Optional: make it slightly brighter + premium */
+body.dark .product-card h3 {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+/* ===============================
+   FULL DARK MODE OVERRIDES
+================================ */
+
+/* Whole page background */
+body.dark {
+  background-color: #3e3636;
+}
+
+/* Remove woody background */
+body.dark .container,
+body.dark .products-container,
+body.dark .grid,
+body.dark .products-section {
+  background: #3f3232 !important;
+}
+
+/* Product card main background */
+body.dark .product-card {
+  background: #2f2c2c !important;
+  box-shadow: 0 8px 30px rgba(49, 46, 46, 0.6);
+}
+
+/* Bottom title section inside card */
+body.dark .product-card .card-bottom,
+body.dark .product-card .product-info {
+  background: #686262 !important;
+}
+
+/* Product Name */
+body.dark .product-card h3,
+body.dark .product-card .product-name {
+  color: #ffffff !important;
+}
+
+/* Price */
+body.dark .product-card .price {
+  color: #ffffff !important;
 }
